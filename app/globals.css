@@ -37,3 +37,14 @@ a {
     transform: translateY(0);
   }
 }
+
+@keyframes slideInSoft {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
