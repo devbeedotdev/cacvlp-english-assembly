@@ -57,7 +57,7 @@ export function WorkersDepartmentsSpotlight() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
-        <div className="mx-auto max-w-6xl">
+        <div className="w-full">
           <div className="mb-10 text-center">
             <p className="text-xs uppercase tracking-[0.28em] text-slate-300">
               Workers &amp; departments
@@ -95,7 +95,7 @@ export function WorkersDepartmentsSpotlight() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-8">
                     <p className="text-xs uppercase tracking-[0.2em] text-slate-200">
-                      {active.name}
+                      {active.individualName}
                     </p>
                   </div>
                 </div>
@@ -111,6 +111,14 @@ export function WorkersDepartmentsSpotlight() {
                     <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-slate-300 sm:text-[1.05rem] lg:text-[1.1rem]">
                       {active.summary}
                     </p>
+                    <div className="mt-6 rounded-2xl border border-white/15 bg-white/5 p-5 shadow-[0_12px_40px_-24px_rgba(255,255,255,0.10)] backdrop-blur-sm">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-200/90">
+                       Motivational quote
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-slate-200/95">
+                        &ldquo;{active.quote}&rdquo;
+                      </p>
+                    </div>
                     <p className="sr-only" aria-live="polite">
                       Now showing: {active.name}.
                     </p>

@@ -20,6 +20,8 @@ const NAV_LINKS = [
 /** Sections with dark backgrounds: keep header glass + light text while overlapping these. */
 const DARK_SECTION_IDS = [
   "hero-section",
+  "about-us-section",
+  "give-section",
   "upcoming-program-section",
   "leadership-highlight-section",
 ] as const;

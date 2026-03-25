@@ -1,12 +1,2 @@
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"cacvlp-english-assembly/page.tsx:ServerRender","message":"assembly_page_render","data":{"ok":true},"timestamp":1774381962752,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"cacvlp-english-assembly/page.tsx:ServerRender","message":"assembly_page_render","data":{"ok":true},"timestamp":1774381962768,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"middleware.ts:middleware","message":"incoming_request","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382019580,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"cacvlp-english-assembly/page.tsx:ServerRender","message":"assembly_page_render","data":{"ok":true},"timestamp":1774382024142,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"middleware.ts:middleware","message":"incoming_request","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382062577,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"cacvlp-english-assembly/page.tsx:ServerRender","message":"assembly_page_render","data":{"ok":true},"timestamp":1774382066474,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H2","location":"DebugClientProbe.tsx:useEffect","message":"client_root_hydrated","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382067085,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H2","location":"DebugClientProbe.tsx:useEffect","message":"client_root_hydrated","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382067089,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"middleware.ts:middleware","message":"incoming_request","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382067829,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H1","location":"cacvlp-english-assembly/page.tsx:ServerRender","message":"assembly_page_render","data":{"ok":true},"timestamp":1774382067846,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H2","location":"DebugClientProbe.tsx:useEffect","message":"client_root_hydrated","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382068588,"runId":"verify"}
-{"sessionId":"90b0f2","hypothesisId":"H2","location":"DebugClientProbe.tsx:useEffect","message":"client_root_hydrated","data":{"pathname":"/cacvlp-english-assembly"},"timestamp":1774382068590,"runId":"verify"}
+{"sessionId":"90b0f2","runId":"pre-fix","hypothesisId":"H_give_mount","location":"components/Give.tsx:useEffect","message":"Give mounted","data":{"giveSectionExists":true,"bankName":"Access Bank"},"timestamp":1774448550992}
+{"sessionId":"90b0f2","runId":"pre-fix","hypothesisId":"H_give_mount","location":"components/Give.tsx:useEffect","message":"Give mounted","data":{"giveSectionExists":true,"bankName":"Access Bank"},"timestamp":1774448550992}

@@ -5,6 +5,12 @@ export interface ChurchInfo {
   churchSchool: string;
 }
 
+export interface GiveInfo {
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+}
+
 export interface Member {
   id: string;
   name: string;
@@ -33,6 +39,10 @@ export interface ChurchDepartment {
   name: string;
   /** Short blurb shown under the title */
   summary: string;
+  /** Short inspirational quote shown under the summary */
+  quote: string;
+  /** Individual/leader name shown on the department image */
+  individualName: string;
   imageUrl: string;
 }
 
@@ -43,12 +53,18 @@ const ROUTE_ROOT = "/cacvlp-english-assembly";
 
 export const CHURCH_INFO: ChurchInfo = {
   name: "Christ Apostolic Church (CACVLP English Assembly)",
-  address:
-    "22 Victory Lane, Valiant District, Lagos, Nigeria (Landmark: Opposite VLP Civic Centre).",
+  address: "7, Ajiboye Street",
+   
   aboutUs:
     "CACVLP English Assembly is a Christ-centered community committed to biblical teaching, prayer, worship, and practical love. We exist to raise disciples who reflect the heart of Jesus in family, work, and society. Whether you are exploring faith or growing deeper in your walk with Christ, this is a place to belong, heal, and serve.",
   churchSchool:
     "Our Church School is an engaging weekly discipleship experience where children, teens, and adults learn Scripture with clarity and life application. Through age-based classes, prayer circles, and mentorship, we help every member build strong biblical foundations and mature in character, purpose, and service.",
+};
+
+export const GIVE_INFO: GiveInfo = {
+  bankName: "Access Bank",
+  accountName: "Christ Apostolic Church Victory Land Pleasure DCC",
+  accountNumber: "2104951027",
 };
 
 const VERSE_SEED = [
@@ -187,6 +203,9 @@ export const DEPARTMENTS: ChurchDepartment[] = [
     name: "Choir",
     summary:
       "Leading the congregation in worship with excellence, unity, and a heart for God’s presence.",
+    quote:
+      "With one voice, we lift worship—inviting God’s presence into every moment.",
+    individualName: "Sis. Precious Adedayo",
     imageUrl: UNSPLASH_PLACEHOLDER,
   },
   {
@@ -194,13 +213,19 @@ export const DEPARTMENTS: ChurchDepartment[] = [
     name: "Ushers",
     summary:
       "Creating a welcoming atmosphere and helping services flow with calm order and hospitality.",
-    imageUrl: UNSPLASH_PLACEHOLDER,
+    quote:
+      "Our welcome is a ministry—serving with gentle order and a listening heart.",
+    individualName: "Bro. Mike Ojo",
+    imageUrl: "/images/adebola.jpg",
   },
   {
     id: "dept-media",
     name: "Media Team",
     summary:
       "Sound, visuals, and streaming so the message is clear in the room and online.",
+    quote:
+      "Faithful media helps the message travel—so every soul can hear clearly.",
+    individualName: "Sis. Ada Akinyemi",
     imageUrl: UNSPLASH_PLACEHOLDER,
   },
   {
@@ -208,6 +233,9 @@ export const DEPARTMENTS: ChurchDepartment[] = [
     name: "Prayer Unit",
     summary:
       "Standing in intercession for the church, families, and the harvest with faithfulness and care.",
+    quote:
+      "We pray with faith—believing God will do what He has promised.",
+    individualName: "Bro. Daniel Okafor",
     imageUrl: UNSPLASH_PLACEHOLDER,
   },
   {
@@ -215,6 +243,9 @@ export const DEPARTMENTS: ChurchDepartment[] = [
     name: "Church School",
     summary:
       "Age-appropriate teaching and mentoring to build strong biblical foundations for every member.",
+    quote:
+      "Teaching the Word with clarity—so hearts grow strong in Christ.",
+    individualName: "Sis. Ruth Oluwatoyin",
     imageUrl: UNSPLASH_PLACEHOLDER,
   },
   {
@@ -222,6 +253,9 @@ export const DEPARTMENTS: ChurchDepartment[] = [
     name: "Hospitality",
     summary:
       "Caring for guests and members through food, conversation, and generous welcome.",
+    quote:
+      "A warm table reflects God’s love—making everyone feel at home.",
+    individualName: "Bro. Samuel Adeyemi",
     imageUrl: UNSPLASH_PLACEHOLDER,
   },
 ];
