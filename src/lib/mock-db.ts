@@ -126,7 +126,7 @@ export const MEMBERS: Member[] = [
   {
     id: "m-001",
     name: "Pastor Samuel Adeyemi",
-    dob: "1979-04-11",
+    dob: "1980-03-25",
     position: "Head Pastor",
     photoUrl: UNSPLASH_PLACEHOLDER,
     isLeader: true,
@@ -134,7 +134,7 @@ export const MEMBERS: Member[] = [
   {
     id: "m-002",
     name: "Pastor Ruth Oluwatoyin",
-    dob: "1984-09-23",
+    dob: "1986-03-25",
     position: "Associate Pastor",
     photoUrl: UNSPLASH_PLACEHOLDER,
     isLeader: true,
@@ -158,7 +158,7 @@ export const MEMBERS: Member[] = [
   {
     id: "m-005",
     name: "Brother Femi Olaitan",
-    dob: "1988-03-08",
+    dob: "1991-03-25",
     position: "Ushering Unit",
     photoUrl: UNSPLASH_PLACEHOLDER,
     isLeader: false,

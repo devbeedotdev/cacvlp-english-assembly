@@ -3,6 +3,7 @@
 import { GIVE_INFO } from "@/src/lib/mock-db";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 function safeCopy(text: string): boolean {
   try {
@@ -93,7 +94,7 @@ export function Give() {
       <div className="relative z-[5] w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="mx-auto w-full">
           <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
-            <div className="lg:col-span-7 opacity-0 animate-[fadeIn_900ms_ease-out_forwards] motion-reduce:animate-none motion-reduce:opacity-100">
+            <ScrollReveal className="lg:col-span-7" variant="up" once>
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">
                 Give
               </p>
@@ -112,9 +113,14 @@ export function Give() {
                 decided in your heart to give, not reluctantly or under
                 compulsion, for God loves a cheerful giver.
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-5 opacity-0 animate-[slideInSoft_900ms_ease-out_120ms_forwards] motion-reduce:animate-none motion-reduce:opacity-100">
+            <ScrollReveal
+              className="lg:col-span-5"
+              variant="right"
+              once
+              delayMs={120}
+            >
               <div className="flex flex-col gap-6">
                 <div className="rounded-2xl border border-white/15 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.65)] backdrop-blur-sm">
                   <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
@@ -183,7 +189,7 @@ export function Give() {
                   </p>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </div>

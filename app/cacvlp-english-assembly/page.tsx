@@ -5,6 +5,7 @@ import { UpcomingProgram } from "@/components/UpcomingProgram";
 import { WorkersDepartmentsSpotlight } from "@/components/WorkersDepartmentsSpotlight";
 import { AboutUs } from "@/components/AboutUs";
 import { Give } from "@/components/Give";
+import { BirthdayHighlight } from "@/components/BirthdayHighlight";
 
 export default function CacvlpEnglishAssemblyPage() {
   return (
@@ -13,8 +14,9 @@ export default function CacvlpEnglishAssemblyPage() {
       <Hero />
       <UpcomingProgram />
       <AboutUs />
-      <Give />
       <LeadershipHighlight />
+      <Give />
+      <BirthdayHighlight />
       <WorkersDepartmentsSpotlight />
      
     </div>

@@ -22,6 +22,7 @@ const DARK_SECTION_IDS = [
   "hero-section",
   "about-us-section",
   "give-section",
+  "birthday-highlight-section",
   "upcoming-program-section",
   "leadership-highlight-section",
 ] as const;

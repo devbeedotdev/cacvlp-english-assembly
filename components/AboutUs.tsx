@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CHURCH_INFO } from "@/src/lib/mock-db";
 import { MapPin } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export function AboutUs() {
   return (
@@ -31,7 +32,11 @@ export function AboutUs() {
       <div className="relative z-[5] w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="w-full">
           <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div className="lg:col-span-7">
+            <ScrollReveal
+              className="lg:col-span-7"
+              variant="up"
+              once
+            >
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">
                 About us
               </p>
@@ -58,9 +63,14 @@ export function AboutUs() {
                 
                
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-5">
+            <ScrollReveal
+              className="lg:col-span-5"
+              variant="down"
+              once
+              delayMs={120}
+            >
               <div className="flex flex-col gap-8">
 
                 {/* Mission (frosted glass blur) */}
@@ -100,7 +110,7 @@ export function AboutUs() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </div>
