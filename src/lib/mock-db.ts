@@ -28,6 +28,14 @@ export interface MediaHubFeature {
   iconHint: "mic" | "radio" | "heart";
 }
 
+export interface ChurchDepartment {
+  id: string;
+  name: string;
+  /** Short blurb shown under the title */
+  summary: string;
+  imageUrl: string;
+}
+
 const UNSPLASH_PLACEHOLDER =
   "https://images.unsplash.com/photo-1523275335684-37898b6baf30";
 
@@ -166,12 +174,57 @@ export const MEMBERS: Member[] = [
 ];
 
 export const UPCOMING_PROGRAMME: UpcomingProgramme = {
-  title: "Holy Spirit Encounter Night",
+  title: "Revival Night",
   description:
-    "An evening of worship, healing prayers, and prophetic ministrations. Invite a friend and come expectant.",
-  targetDate: "2026-05-10T17:00:00.000Z",
-  link: `${ROUTE_ROOT}/events/holy-spirit-encounter-night`,
+    "An evening of worship, prayer, and teaching focused on renewal. Come expectant and invite someone along.",
+  targetDate: "2026-04-12T18:30:00.000Z",
+  link: `${ROUTE_ROOT}/events/revival-night`,
 };
+
+export const DEPARTMENTS: ChurchDepartment[] = [
+  {
+    id: "dept-choir",
+    name: "Choir",
+    summary:
+      "Leading the congregation in worship with excellence, unity, and a heart for God’s presence.",
+    imageUrl: UNSPLASH_PLACEHOLDER,
+  },
+  {
+    id: "dept-ushers",
+    name: "Ushers",
+    summary:
+      "Creating a welcoming atmosphere and helping services flow with calm order and hospitality.",
+    imageUrl: UNSPLASH_PLACEHOLDER,
+  },
+  {
+    id: "dept-media",
+    name: "Media Team",
+    summary:
+      "Sound, visuals, and streaming so the message is clear in the room and online.",
+    imageUrl: UNSPLASH_PLACEHOLDER,
+  },
+  {
+    id: "dept-prayer",
+    name: "Prayer Unit",
+    summary:
+      "Standing in intercession for the church, families, and the harvest with faithfulness and care.",
+    imageUrl: UNSPLASH_PLACEHOLDER,
+  },
+  {
+    id: "dept-school",
+    name: "Church School",
+    summary:
+      "Age-appropriate teaching and mentoring to build strong biblical foundations for every member.",
+    imageUrl: UNSPLASH_PLACEHOLDER,
+  },
+  {
+    id: "dept-hospitality",
+    name: "Hospitality",
+    summary:
+      "Caring for guests and members through food, conversation, and generous welcome.",
+    imageUrl: UNSPLASH_PLACEHOLDER,
+  },
+];
 
 export const LATEST_FEATURES: MediaHubFeature[] = [
   {

@@ -17,32 +17,54 @@ const NAV_LINKS = [
   { label: "Contact", href: `${ROUTE_ROOT}/contact` },
 ];
 
+/** Sections with dark backgrounds: keep header glass + light text while overlapping these. */
+const DARK_SECTION_IDS = [
+  "hero-section",
+  "upcoming-program-section",
+  "leadership-highlight-section",
+] as const;
+
+function sectionOverlapsHeaderBand(
+  section: Element,
+  headerBottomPx: number,
+): boolean {
+  const r = section.getBoundingClientRect();
+  return r.top < headerBottomPx && r.bottom > 0;
+}
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isPastHero, setIsPastHero] = useState(false);
+  /** True = solid light bar + dark nav text (over light page content). False = glass + light text over dark sections. */
+  const [useSolidLightHeader, setUseSolidLightHeader] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const node = headerRef.current;
     if (!node) return;
-    const heroSection = document.getElementById("hero-section");
 
-    const onScroll = () => {
-      const heroBottom = heroSection?.getBoundingClientRect().bottom ?? null;
-      const pastHero = typeof heroBottom === "number" ? heroBottom <= 0 : false;
-      setIsPastHero(pastHero);
+    const updateHeaderTheme = () => {
+      const headerBottom = node.getBoundingClientRect().bottom;
+      const overlappingDark = DARK_SECTION_IDS.some((id) => {
+        const el = document.getElementById(id);
+        return el ? sectionOverlapsHeaderBand(el, headerBottom) : false;
+      });
+      setUseSolidLightHeader(!overlappingDark);
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    updateHeaderTheme();
+    window.addEventListener("scroll", updateHeaderTheme, { passive: true });
+    window.addEventListener("resize", updateHeaderTheme);
+    return () => {
+      window.removeEventListener("scroll", updateHeaderTheme);
+      window.removeEventListener("resize", updateHeaderTheme);
+    };
   }, []);
 
   return (
     <header
       ref={headerRef}
       className={`sticky top-0 z-50 mb-[-88px] border-b backdrop-blur-sm transition-colors duration-300  ${
-        isPastHero
+        useSolidLightHeader
           ? "border-slate-200 bg-white/92"
           : "border-transparent bg-slate-950/30"
       }`}
@@ -53,7 +75,7 @@ export function Header() {
           className="group inline-flex items-center gap-3"
           aria-label="Christ Apostolic Church Home"
         >
-         <span className={`relative h-12 w-12 overflow-hidden rounded-full sm:h-14 sm:w-14 ${isPastHero ? "border border-slate-300" : "border border-white/30"}`}>
+         <span className={`relative h-12 w-12 overflow-hidden rounded-full sm:h-14 sm:w-14 ${useSolidLightHeader ? "border border-slate-300" : "border border-white/30"}`}>
             <Image
               src={LOGO_URL}
               alt="Christ Apostolic Church logo"
@@ -64,7 +86,7 @@ export function Header() {
             />
           </span>
           
-          <span className={`hidden text-sm font-medium tracking-tight sm:block ${isPastHero ? "text-slate-900" : "text-white"}`}>
+          <span className={`hidden text-sm font-medium tracking-tight sm:block ${useSolidLightHeader ? "text-slate-900" : "text-white"}`}>
             Christ Apostolic Church Victory Land Pleasure DCC
           </span>
         </Link>
@@ -75,7 +97,7 @@ export function Header() {
               key={link.label}
               href={link.href}
               className={`rounded-lg px-3 py-2 text-sm transition-colors duration-200 ${
-                isPastHero
+                useSolidLightHeader
                   ? "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
                   : "text-slate-100/90 hover:bg-white/10 hover:text-white"
               }`}
@@ -95,7 +117,7 @@ export function Header() {
           <button
             type="button"
             className={`inline-flex items-center justify-center rounded-lg border p-2 transition-colors duration-200 md:hidden ${
-              isPastHero
+              useSolidLightHeader
                 ? "border-slate-300 text-slate-800 hover:bg-slate-100"
                 : "border-white/30 text-white hover:bg-white/10"
             }`}

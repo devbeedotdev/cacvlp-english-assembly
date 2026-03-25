@@ -48,3 +48,26 @@ a {
     transform: translateX(0);
   }
 }
+
+/* Workers & Departments — horizontal slide when changing spotlight */
+@keyframes deptSlideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(2.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes deptSlideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-2.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

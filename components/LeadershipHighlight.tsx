@@ -18,24 +18,25 @@ const LEADERS: LeaderProfile[] = [
     role: "Head Pastor",
     quote:
       "We are called to raise people of prayer, purpose, and Christlike character in every season.",
-    photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-  },
-  {
-    id: "leader-2",
-    name: "Pastor Ruth Oluwatoyin",
-    role: "Assistant Pastor",
-    quote:
-      "The presence of God brings healing to hearts and clarity to destiny. Keep walking in grace.",
-    photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-  },
-  {
-    id: "leader-3",
-    name: "Brother Michael Ajayi",
-    role: "Prayer Unit Lead",
-    quote:
-      "Prayer is our lifeline as a church family. Through prayer, we align with heaven and walk in victory.",
-    photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-  },
+    photoUrl: "/images/abolaji.jpg",
+  }
+  // ,
+  // {
+  //   id: "leader-2",
+  //   name: "Pastor Ruth Oluwatoyin",
+  //   role: "Assistant Pastor",
+  //   quote:
+  //     "The presence of God brings healing to hearts and clarity to destiny. Keep walking in grace.",
+  //   photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+  // },
+  // {
+  //   id: "leader-3",
+  //   name: "Brother Michael Ajayi",
+  //   role: "Prayer Unit Lead",
+  //   quote:
+  //     "Prayer is our lifeline as a church family. Through prayer, we align with heaven and walk in victory.",
+  //   photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+  // },
 ];
 
 const AUTO_SLIDE_MS = 5500;
@@ -54,14 +55,28 @@ export function LeadershipHighlight() {
   const activeLeader = LEADERS[activeIndex];
 
   return (
-    <section className="relative w-full overflow-hidden py-14 sm:py-16 lg:py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_7%_18%,rgba(37,99,235,0.12),transparent_34%),radial-gradient(circle_at_94%_78%,rgba(220,38,38,0.12),transparent_36%)]" />
+    <section
+      id="leadership-highlight-section"
+      className="relative w-full overflow-hidden bg-slate-950 py-14 sm:py-16 lg:py-20"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-45"
+        style={{
+          backgroundImage:
+            "url('/images/hands.jpg')",
+        }}
+        aria-hidden="true"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/94 via-slate-950/86 to-slate-950/94" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_20%,rgba(37,99,235,0.24),transparent_34%),radial-gradient(circle_at_92%_80%,rgba(220,38,38,0.22),transparent_36%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="mb-10 text-center">
-          <p className="text-xs uppercase tracking-[0.28em] text-slate-600">
+          <p className="text-xs uppercase tracking-[0.28em] text-slate-300">
             Leadership Highlight
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Shepherds of Vision and Service
           </h2>
         </div>
@@ -95,15 +110,15 @@ export function LeadershipHighlight() {
               </div>
 
               <div className="flex items-center">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-slate-500">
+                <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-sm sm:p-7">
+                  <p className="text-xs uppercase tracking-[0.28em] text-slate-300">
                     Pastoral Voice
                   </p>
-                  <p className="mt-5 max-w-3xl text-pretty text-xl leading-relaxed text-slate-700 sm:text-[2rem] sm:leading-relaxed">
+                  <p className="mt-5 max-w-3xl text-pretty text-xl leading-relaxed text-slate-100 sm:text-[2rem] sm:leading-relaxed">
                     &ldquo;{activeLeader.quote}&rdquo;
                   </p>
-                  <div className="mt-7 h-[2px] w-28 bg-gradient-to-r from-red-500 via-slate-300 to-blue-500" />
-                  <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-600">
+                  <div className="mt-7 h-[2px] w-28 bg-gradient-to-r from-red-500 via-white/70 to-blue-500" />
+                  <p className="mt-6 max-w-2xl text-base leading-relaxed text-slate-300">
                     A leadership culture centered on Scripture, prayer, and
                     practical care for every member.
                   </p>
