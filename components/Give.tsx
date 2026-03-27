@@ -33,6 +33,7 @@ function safeCopy(text: string): boolean {
 
 export function Give() {
   const [copied, setCopied] = useState<"none" | "accountNumber">("none");
+  const [showPaymentDetails, setShowPaymentDetails] = useState(false);
 
   const copyLabel = useMemo(() => {
     if (copied === "accountNumber") return "Copied";
@@ -94,7 +95,11 @@ export function Give() {
       <div className="relative z-[5] w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="mx-auto w-full">
           <div className="grid min-w-0 gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
-            <ScrollReveal className="lg:col-span-7" variant="up" once>
+            <ScrollReveal
+              className={showPaymentDetails ? "lg:col-span-7" : "lg:col-span-12"}
+              variant="up"
+              once
+            >
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/70">
                 Give
               </p>
@@ -113,83 +118,96 @@ export function Give() {
                 decided in your heart to give, not reluctantly or under
                 compulsion, for God loves a cheerful giver.
               </p>
+
+              <div className="mt-7">
+                <button
+                  type="button"
+                  onClick={() => setShowPaymentDetails(true)}
+                  className="inline-flex items-center justify-center rounded-full border border-white/45 bg-white/15 px-5 py-3 text-sm font-semibold text-white backdrop-blur-xl transition-colors duration-300 hover:bg-white/25"
+                  aria-label="Pay online"
+                >
+                  Pay online
+                </button>
+              </div>
             </ScrollReveal>
 
-            <ScrollReveal
-              className="lg:col-span-5"
-              variant="right"
-              once
-              delayMs={120}
-            >
-              <div className="flex flex-col gap-6">
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.65)] backdrop-blur-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
-                    Tithes, offerings & seed
-                  </p>
+            {showPaymentDetails ? (
+              <ScrollReveal
+                className="lg:col-span-5"
+                variant="right"
+                once
+                delayMs={120}
+              >
+                <div className="flex flex-col gap-6">
+                  <div className="rounded-2xl border border-white/15 bg-white/5 p-6 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.65)] backdrop-blur-sm">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
+                      Tithes, offerings & seed
+                    </p>
 
-                  <p className="mt-2 text-sm text-white/85">
-                    Use the details below to give to the church.
-                  </p>
+                    <p className="mt-2 text-sm text-white/85">
+                      Use the details below to give to the church.
+                    </p>
 
-                  <div className="mt-5 space-y-4">
-                    <div className="grid grid-cols-[120px,1fr] items-start gap-x-4 gap-y-1">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
-                        Bank
-                      </p>
-                      <p className="text-sm leading-relaxed text-white/90">
-                        {GIVE_INFO.bankName}
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-[120px,1fr] items-start gap-x-4 gap-y-1">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
-                        Account name
-                      </p>
-                      <p className="text-sm leading-relaxed text-white/90 select-text">
-                        {GIVE_INFO.accountName}
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-[120px,1fr] items-start gap-x-4 gap-y-3">
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
-                        Account number
-                      </p>
-                      <div className="flex flex-col gap-2">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <p className="font-mono text-sm text-white/95 select-text break-all">
-                            {GIVE_INFO.accountNumber}
-                          </p>
-                          <button
-                            type="button"
-                            className="rounded-lg border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/90 transition-colors hover:bg-white/15 active:bg-white/20"
-                            aria-label="Copy account number"
-                            onClick={() => {
-                              const ok = safeCopy(GIVE_INFO.accountNumber);
-                              if (ok) setCopied("accountNumber");
-                            }}
-                          >
-                            {copyLabel}
-                          </button>
-                        </div>
-                        <p className="text-xs text-white/60">
-                          Tip: you can tap the number to select it.
+                    <div className="mt-5 space-y-4">
+                      <div className="grid grid-cols-[120px,1fr] items-start gap-x-4 gap-y-1">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                          Bank
                         </p>
+                        <p className="text-sm leading-relaxed text-white/90">
+                          {GIVE_INFO.bankName}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-[120px,1fr] items-start gap-x-4 gap-y-1">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                          Account name
+                        </p>
+                        <p className="text-sm leading-relaxed text-white/90 select-text">
+                          {GIVE_INFO.accountName}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-[120px,1fr] items-start gap-x-4 gap-y-3">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                          Account number
+                        </p>
+                        <div className="flex flex-col gap-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <p className="font-mono text-sm text-white/95 select-text break-all">
+                              {GIVE_INFO.accountNumber}
+                            </p>
+                            <button
+                              type="button"
+                              className="rounded-lg border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/90 transition-colors hover:bg-white/15 active:bg-white/20"
+                              aria-label="Copy account number"
+                              onClick={() => {
+                                const ok = safeCopy(GIVE_INFO.accountNumber);
+                                if (ok) setCopied("accountNumber");
+                              }}
+                            >
+                              {copyLabel}
+                            </button>
+                          </div>
+                          <p className="text-xs text-white/60">
+                            Tip: you can tap the number to select it.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
-                  <p className="text-sm font-semibold text-white/90">
-                    Payment note
-                  </p>
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    Please specify Tithe, Offering, or Seed in the description field of your transfer. Thank you for your faithfulness!
-
-                  </p>
+                  <div className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-sm">
+                    <p className="text-sm font-semibold text-white/90">
+                      Payment note
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/75">
+                      Please specify Tithe, Offering, or Seed in the description field
+                      of your transfer. Thank you for your faithfulness!
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            ) : null}
           </div>
         </div>
       </div>

@@ -50,11 +50,33 @@ export function WorkersDepartmentsSpotlight() {
         />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/65 to-slate-950/95" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_22%,rgba(37,99,235,0.24),transparent_42%),radial-gradient(circle_at_88%_78%,rgba(220,38,38,0.18),transparent_46%)]" />
-
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      {/* Cinematic color washes (same style as `birthday-highlight-section`) */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(100deg, rgba(74,51,51,0.58) 0%, rgba(76,76,84,0.54) 48%, rgba(59,51,59,0.56) 100%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(100deg, rgba(32,22,22,0.34) 0%, rgba(28,28,32,0.32) 50%, rgba(26,22,28,0.34) 100%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.10), transparent, rgba(0,0,0,0.58))",
+        }}
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#c4a574]/25 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#c4a574]/20 to-transparent" />
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="w-full">

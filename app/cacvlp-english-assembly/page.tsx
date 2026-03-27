@@ -6,14 +6,18 @@ import { WorkersDepartmentsSpotlight } from "@/components/WorkersDepartmentsSpot
 import { AboutUs } from "@/components/AboutUs";
 import { Give } from "@/components/Give";
 import { BirthdayHighlight } from "@/components/BirthdayHighlight";
+import { ChurchSchool } from "@/components/ChurchSchool";
+import { SpecialOffer } from "@/components/SpecialOffer";
 
 export default function CacvlpEnglishAssemblyPage() {
   return (
     <div className="space-y-0">
       <Header />
       <Hero />
+      <SpecialOffer />
       <UpcomingProgram />
       <AboutUs />
+      <ChurchSchool />
       <LeadershipHighlight />
       <Give />
       <BirthdayHighlight />

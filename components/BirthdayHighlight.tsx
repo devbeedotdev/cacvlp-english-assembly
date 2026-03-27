@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Cake, ChevronRight } from "lucide-react";
 import { MEMBERS } from "@/src/lib/mock-db";
 import { isCelebrantToday } from "@/src/lib/utils";
@@ -16,6 +16,24 @@ export function BirthdayHighlight() {
   const [now, setNow] = useState(() => new Date());
   const [activeIdx, setActiveIdx] = useState(0);
   const [swapDir, setSwapDir] = useState<"right" | "left">("right");
+  const [hasEntered, setHasEntered] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const shownCelebrantsRef = useRef<Set<string>>(new Set());
+  const rafRef = useRef<number | null>(null);
+
+  // Color washes tuned to feel like `Give` (burgundy → slate → plum),
+  // but slightly lighter so the birthday background photo still shows.
+  const BIRTHDAY_OVERLAY_TUNING = {
+    mainWashLeft: 0.58,
+    mainWashMid: 0.54,
+    mainWashRight: 0.56,
+    depthLeft: 0.34,
+    depthMid: 0.32,
+    depthRight: 0.34,
+    vignetteTop: 0.10,
+    vignetteBottom: 0.58,
+  } as const;
 
   useEffect(() => {
     const t = window.setInterval(() => setNow(new Date()), 10_000);
@@ -25,6 +43,131 @@ export function BirthdayHighlight() {
   const celebrants = useMemo(() => {
     return MEMBERS.filter((m) => isCelebrantToday(m.dob, now));
   }, [now]);
+
+  const activeId =
+    celebrants[activeIdx]?.id ?? celebrants[0]?.id ?? null;
+  const active = celebrants[activeIdx] ?? celebrants[0];
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.some((e) => e.isIntersecting);
+        if (!hit) return;
+        setHasEntered(true);
+        obs.disconnect();
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+    );
+
+    obs.observe(node);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasEntered) return;
+    if (!activeId) return;
+    if (shownCelebrantsRef.current.has(activeId)) return;
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      shownCelebrantsRef.current.add(activeId);
+      return;
+    }
+
+    const canvas = canvasRef.current;
+    const host = sectionRef.current;
+    if (!canvas || !host) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Resize to the section’s box so it stays crisp.
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = host.getBoundingClientRect();
+    canvas.width = Math.floor(rect.width * dpr);
+    canvas.height = Math.floor(rect.height * dpr);
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Stop any previous animation.
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    const colors = [
+      "rgba(196,165,116,0.95)", // warm gold
+      "rgba(255,255,255,0.95)", // white
+      "rgba(244,114,182,0.85)", // soft rose
+      "rgba(147,197,253,0.75)", // soft sky
+    ];
+
+    const particleCount = 120;
+    const particles = Array.from({ length: particleCount }, () => {
+      const angle = (-Math.PI / 2) + (Math.random() * 0.9 - 0.45);
+      const speed = 7 + Math.random() * 7.5;
+      return {
+        x: rect.width * 0.55 + (Math.random() * 140 - 70),
+        y: rect.height * 0.22 + (Math.random() * 50 - 25),
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        g: 0.22 + Math.random() * 0.12,
+        r: 2.2 + Math.random() * 2.6,
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.35,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: 0,
+      };
+    });
+
+    const start = performance.now();
+    const duration = 1200;
+
+    const step = (t: number) => {
+      const elapsed = t - start;
+      const p = Math.min(1, elapsed / duration);
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      // Fade out towards the end (soft).
+      const alpha = 1 - Math.pow(p, 1.7);
+
+      for (const s of particles) {
+        s.life += 1;
+        s.vy += s.g;
+        s.x += s.vx;
+        s.y += s.vy;
+        s.rot += s.vr;
+
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.translate(s.x, s.y);
+        ctx.rotate(s.rot);
+        ctx.fillStyle = s.color;
+        ctx.fillRect(-s.r, -s.r * 0.55, s.r * 2, s.r * 1.1);
+        ctx.restore();
+      }
+
+      if (elapsed < duration) {
+        rafRef.current = requestAnimationFrame(step);
+      } else {
+        ctx.clearRect(0, 0, rect.width, rect.height);
+        rafRef.current = null;
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+    shownCelebrantsRef.current.add(activeId);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+  }, [activeId, hasEntered]);
 
   useEffect(() => {
     // Keep the active celebrant index valid as the "today" window updates.
@@ -39,18 +182,55 @@ export function BirthdayHighlight() {
     return null;
   }
 
-  const active = celebrants[activeIdx] ?? celebrants[0];
-
   return (
     <section
       id="birthday-highlight-section"
+      ref={sectionRef}
       className="relative isolate w-full overflow-hidden bg-slate-950 py-16 sm:py-20 lg:py-24 pb-28 sm:pb-32 lg:pb-28"
       aria-label="Birthday highlight"
     >
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_15%,rgba(196,165,116,0.18),transparent_45%),radial-gradient(circle_at_80%_65%,rgba(244,114,182,0.12),transparent_50%)]" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-slate-950/70 via-slate-950/35 to-slate-950/80" />
+      {/* Background image (full-bleed) */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <Image
+          src="/images/birthday.jpg"
+          alt=""
+          fill
+          priority={false}
+          sizes="100vw"
+          className="object-cover object-center opacity-30"
+        />
+      </div>
 
-      <div className="absolute inset-x-0 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#c4a574]/20 to-transparent" />
+      {/* Cinematic color washes (stacked translucent gradients) */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background: `linear-gradient(100deg, rgba(74,51,51,${BIRTHDAY_OVERLAY_TUNING.mainWashLeft}) 0%, rgba(76,76,84,${BIRTHDAY_OVERLAY_TUNING.mainWashMid}) 48%, rgba(59,51,59,${BIRTHDAY_OVERLAY_TUNING.mainWashRight}) 100%)`,
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background: `linear-gradient(100deg, rgba(32,22,22,${BIRTHDAY_OVERLAY_TUNING.depthLeft}) 0%, rgba(28,28,32,${BIRTHDAY_OVERLAY_TUNING.depthMid}) 50%, rgba(26,22,28,${BIRTHDAY_OVERLAY_TUNING.depthRight}) 100%)`,
+        }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background: `linear-gradient(to bottom, rgba(0,0,0,${BIRTHDAY_OVERLAY_TUNING.vignetteTop}), transparent, rgba(0,0,0,${BIRTHDAY_OVERLAY_TUNING.vignetteBottom}))`,
+        }}
+        aria-hidden
+      />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#c4a574]/25 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-px bg-gradient-to-r from-transparent via-[#c4a574]/20 to-transparent" />
+
+      <canvas
+        ref={canvasRef}
+        className="pointer-events-none absolute inset-0 z-[3]"
+        aria-hidden="true"
+      />
 
       <div className="relative z-[5] w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="mx-auto w-full">

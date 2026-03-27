@@ -21,6 +21,7 @@ const NAV_LINKS = [
 const DARK_SECTION_IDS = [
   "hero-section",
   "about-us-section",
+  "church-school-section",
   "give-section",
   "birthday-highlight-section",
   "upcoming-program-section",
