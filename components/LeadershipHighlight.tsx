@@ -20,23 +20,23 @@ const LEADERS: LeaderProfile[] = [
       "We are called to raise people of prayer, purpose, and Christlike character in every season.",
     photoUrl: "/images/abolaji.jpg",
   }
-  // ,
-  // {
-  //   id: "leader-2",
-  //   name: "Pastor Ruth Oluwatoyin",
-  //   role: "Assistant Pastor",
-  //   quote:
-  //     "The presence of God brings healing to hearts and clarity to destiny. Keep walking in grace.",
-  //   photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-  // },
-  // {
-  //   id: "leader-3",
-  //   name: "Brother Michael Ajayi",
-  //   role: "Prayer Unit Lead",
-  //   quote:
-  //     "Prayer is our lifeline as a church family. Through prayer, we align with heaven and walk in victory.",
-  //   photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
-  // },
+  ,
+  {
+    id: "leader-2",
+    name: "Pastor Ruth Oluwatoyin",
+    role: "Assistant Pastor",
+    quote:
+      "The presence of God brings healing to hearts and clarity to destiny. Keep walking in grace.",
+    photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+  },
+  {
+    id: "leader-3",
+    name: "Brother Michael Ajayi",
+    role: "Prayer Unit Lead",
+    quote:
+      "Prayer is our lifeline as a church family. Through prayer, we align with heaven and walk in victory.",
+    photoUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+  },
 ];
 
 const AUTO_SLIDE_MS = 5500;

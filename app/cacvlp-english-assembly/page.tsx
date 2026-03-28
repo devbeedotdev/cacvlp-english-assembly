@@ -8,6 +8,7 @@ import { Give } from "@/components/Give";
 import { BirthdayHighlight } from "@/components/BirthdayHighlight";
 import { ChurchSchool } from "@/components/ChurchSchool";
 import { SpecialOffer } from "@/components/SpecialOffer";
+import { Footer } from "@/components/Footer";
 
 export default function CacvlpEnglishAssemblyPage() {
   return (
@@ -22,7 +23,7 @@ export default function CacvlpEnglishAssemblyPage() {
       <Give />
       <BirthdayHighlight />
       <WorkersDepartmentsSpotlight />
-     
+      <Footer />
     </div>
   );
 }

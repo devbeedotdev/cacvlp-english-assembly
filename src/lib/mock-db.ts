@@ -11,6 +11,14 @@ export interface GiveInfo {
   accountNumber: string;
 }
 
+/** Official profile URLs — replace with your congregation’s handles when ready. */
+export interface ChurchSocialLinks {
+  facebook: string;
+  instagram: string;
+  x: string;
+  youtube: string;
+}
+
 export interface Member {
   id: string;
   name: string;
@@ -65,6 +73,14 @@ export const GIVE_INFO: GiveInfo = {
   bankName: "Access Bank",
   accountName: "Christ Apostolic Church Victory Land Pleasure DCC",
   accountNumber: "2104951027",
+};
+
+/** Replace with your congregation’s official profile URLs. */
+export const CHURCH_SOCIAL_LINKS: ChurchSocialLinks = {
+  facebook: "https://www.facebook.com/",
+  instagram: "https://www.instagram.com/",
+  x: "https://x.com/",
+  youtube: "https://www.youtube.com/",
 };
 
 const VERSE_SEED = [
@@ -126,7 +142,7 @@ export const MEMBERS: Member[] = [
   {
     id: "m-001",
     name: "Pastor Samuel Adeyemi",
-    dob: "1980-03-25",
+    dob: "1980-03-27",
     position: "Head Pastor",
     photoUrl: UNSPLASH_PLACEHOLDER,
     isLeader: true,
@@ -134,7 +150,7 @@ export const MEMBERS: Member[] = [
   {
     id: "m-002",
     name: "Pastor Ruth Oluwatoyin",
-    dob: "1986-03-25",
+    dob: "1986-03-27",
     position: "Associate Pastor",
     photoUrl: UNSPLASH_PLACEHOLDER,
     isLeader: true,
@@ -142,7 +158,7 @@ export const MEMBERS: Member[] = [
   {
     id: "m-003",
     name: "Brother Daniel Okafor",
-    dob: "1990-12-02",
+    dob: "1990-03-27",
     position: "Choir Coordinator",
     photoUrl: UNSPLASH_PLACEHOLDER,
     isLeader: true,
