@@ -20,12 +20,15 @@ const NAV_LINKS = [
 /** Sections with dark backgrounds: keep header glass + light text while overlapping these. */
 const DARK_SECTION_IDS = [
   "hero-section",
+  "special-offer-section",
   "about-us-section",
   "church-school-section",
   "give-section",
   "birthday-highlight-section",
   "upcoming-program-section",
   "leadership-highlight-section",
+  "workers-departments-section",
+  "site-footer",
 ] as const;
 
 function sectionOverlapsHeaderBand(

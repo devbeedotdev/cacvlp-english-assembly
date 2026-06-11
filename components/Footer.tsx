@@ -56,7 +56,7 @@ export function Footer() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-[10%] bottom-0 h-[320px] w-[55%] -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_62%)] blur-3xl"
+        className="pointer-events-none absolute right-0 bottom-0 h-[320px] w-[55%] -z-10 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_62%)] blur-3xl"
         aria-hidden
       />
 

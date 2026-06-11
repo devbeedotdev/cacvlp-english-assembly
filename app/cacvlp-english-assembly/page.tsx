@@ -15,7 +15,7 @@ export default function CacvlpEnglishAssemblyPage() {
     <div className="space-y-0">
       <Header />
       <Hero />
-      <SpecialOffer />
+      
       <UpcomingProgram />
       <AboutUs />
       <ChurchSchool />
@@ -23,6 +23,7 @@ export default function CacvlpEnglishAssemblyPage() {
       <Give />
       <BirthdayHighlight />
       <WorkersDepartmentsSpotlight />
+      <SpecialOffer />
       <Footer />
     </div>
   );

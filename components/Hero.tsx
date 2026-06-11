@@ -15,7 +15,7 @@ export function Hero() {
   return (
     <section
       id="hero-section"
-      className="group relative isolate -mt-[88px] min-h-[60vh] overflow-visible pt-[75px]"
+      className="group relative isolate -mt-[88px] min-h-[60vh] overflow-hidden pt-[75px]"
     >
       <div
         className="absolute inset-0 scale-[1.05] bg-cover bg-center transition-transform duration-[1200ms] ease-out group-hover:scale-[1.08]"
